@@ -1,0 +1,53 @@
+:root {
+    --color-background: #eeeeee;
+}
+
+* {
+    font-family: 'Roboto Mono', monospace;
+}
+
+body {
+    background-color: var(--color-background);
+}
+
+button {
+    border-radius: 4px;
+    border-style: solid;
+    border-color: #222222;
+}
+
+#top-bar {
+    text-align: center;
+}
+
+.large-text {
+    font-size: 36px;
+}
+
+.button--navigation {
+    background-color: #dddddd;
+    padding: 8px 32px;
+}
+
+.button--generator {
+    background-color: #dddddd;
+    color: #000000;
+}
+
+.button--large-rectangle {
+    width: 256px;
+    padding: 8px;
+}
+
+#generator-purchasing-area-container {
+    border-bottom: 2px #000000 solid;
+}
+
+.generator-information-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 2px #000000 solid;
+    font-size: 20px;
+    padding: 2px;
+}
