@@ -43,7 +43,11 @@ setInterval(() => {
 
 	for (let i = 1; i <= player.generators.length - 1; i++) {
 		$(`#cash-generator-${i}-multiplier`).text(
-			formatNumber(player.generators[i].multiplier)
+			formatNumber(
+				player.generators[i].multiplier.mul(
+					player.cashUpgrades[`cu1`].currentEffect
+				)
+			) // cu1 effect
 		);
 		$(`#cash-generator-${i}-owned-count`).text(
 			formatNumber(player.generators[i].amountOwned)
