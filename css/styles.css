@@ -27,6 +27,14 @@ button {
 .button--navigation {
     background-color: #dddddd;
     padding: 8px 32px;
+    border: 2px #000000 solid;
+    margin: 2px;
+}
+
+.button--upgrade {
+  background-color: #dddddd;
+  color: #000000;
+  padding: 16px;
 }
 
 .button--generator {
@@ -39,11 +47,11 @@ button {
     padding: 8px;
 }
 
-#generator-purchasing-area-container {
+#cash-generator-purchasing-area-container {
     border-bottom: 2px #000000 solid;
 }
 
-.generator-information-container {
+.cash-generator-information-container {
     display: flex;
     justify-content: space-between;
     align-items: center;

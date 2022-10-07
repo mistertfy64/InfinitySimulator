@@ -1,29 +1,67 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap"
-    rel="stylesheet"
-  />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap" rel="stylesheet" />
   <link href="./css/styles.css" rel="stylesheet">
   <title>Infinity Simulator</title>
 </head>
+
 <body>
-  
+
   <div id="main-content-container" style="text-align: center">
-    <div >
+    <div>
       You have <span id="cash-count" class="large-text">0</span> cash.
     </div>
-    
-
-    <div id="generator-purchasing-area-container">
-      <div class="generator-information-container"><span>Tier 1 Generators - Bought: <span id="generator-1-purchased-count">0</span></span><span id="generator-1-owned-count">0</span><button class="button--large-rectangle button--generator" onClick="buyGenerator(1)">Buy 1 for <span id="generator-1-cost">0</button></div>
+    <br>
+    <div id="navigation-button-container" style="display:flex;flex-direction:row;">
+      <button class="button--navigation">
+        Cash
+      </button>
+      <button class="button--navigation">
+        Prestige Cash
+      </button>
     </div>
+    <div id="navigation-button-container" style="display:flex;flex-direction:row;">
+      <button class="button--navigation" onclick="navigateTo('cash-generator-purchasing-area-container')">
+        Generators
+      </button>
+      <button class="button--navigation" onClick="navigateTo('cash-upgrade-purchasing-area-container')">
+        Upgrades
+      </button>
+    </div>
+    <br><br>
+
+
+
+    <div id="cash-generator-purchasing-area-container">
+      <div class="cash-generator-information-container"><span>Tier 1 Cash Generators &#10005;<span
+            id="cash-generator-1-multiplier">1</span></span><span id="cash-generator-1-owned-count">0</span><button
+          class="button--large-rectangle button--generator" onClick="buyGenerator(1)">Buy 1 for <span
+            id="cash-generator-1-cost">0</button></div>
+    </div>
+
+    <div id="cash-upgrade-purchasing-area-container">
+      <button class="button--upgrade" onClick="buyCashUpgrade(1)">
+        Cash Upgrade #1
+        <br>
+        Increase generation rate of all generators by &times;1.5
+        <br>
+        Currently: &times;<span id="cash-upgrade-1__current-effect">1</span>
+        <br>
+        Level <span id="cash-upgrade-1__level">0</span>
+        <br>
+        Cost: <span id="cash-upgrade-1__cost">0</span> cash
+      </button>
+    </div>
+
+
+
   </div>
   </div>
 
@@ -35,4 +73,5 @@
   <script src="./js/loop.js"></script>
   <script src="./js/game.js"></script>
 </body>
+
 </html>
