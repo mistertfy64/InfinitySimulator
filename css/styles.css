@@ -58,4 +58,12 @@ button {
     border-top: 2px #000000 solid;
     font-size: 20px;
     padding: 2px;
+
+}   
+.cash-generator-labeler {
+white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 30%;
+    text-align: left;
 }

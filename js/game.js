@@ -1,7 +1,7 @@
 var player = {
 	cash: new Decimal("1"),
 	lastUpdateTime: Date.now(),
-	generators: [
+	cashGenerators: [
 		{},
 		{
 			amountPurchased: new Decimal("0"),
@@ -27,29 +27,29 @@ const SCREENS = [
 function buyGenerator(number) {
 	if (player.cash.gte(getCostForGenerator(number))) {
 		player.cash = player.cash.sub(getCostForGenerator(number));
-		player.generators[number].amountPurchased =
-			player.generators[number].amountPurchased.add("1");
-		player.generators[number].amountOwned =
-			player.generators[number].amountOwned.add("1");
-		if (player.generators[number].amountPurchased.eq(1)) {
+		player.cashGenerators[number].amountPurchased =
+			player.cashGenerators[number].amountPurchased.add("1");
+		player.cashGenerators[number].amountOwned =
+			player.cashGenerators[number].amountOwned.add("1");
+		if (player.cashGenerators[number].amountPurchased.eq(1)) {
 			writeNewGenerator(number + 1);
 		}
 	}
 }
 
 function writeNewGenerator(number) {
-	player.generators[number] = {
+	player.cashGenerators[number] = {
 		amountPurchased: new Decimal("0"),
 		amountOwned: new Decimal("0"),
 		multiplier: new Decimal("1"),
 	};
 	$(`#cash-generator-purchasing-area-container`).append(
-		`<div class="cash-generator-information-container"><span>Tier ${number} Cash Generators &#10005;<span id="cash-generator-${number}-multiplier">1</span></span><span id="cash-generator-${number}-owned-count">0</span><button class="button--large-rectangle button--generator" onClick="buyGenerator(${number})">Buy 1 for <span id="cash-generator-${number}-cost">0</button></div>`
+		`<div class="cash-generator-information-container"><span class="cash-generator-labeler">Tier ${number} Cash Generators &#10005;<span id="cash-generator-${number}-multiplier">1</span></span><span id="cash-generator-${number}-owned-count">0</span><button class="button--large-rectangle button--generator" onClick="buyGenerator(${number})">Buy 1 for <span id="cash-generator-${number}-cost">0</button></div>`
 	);
 }
 
 function getCostForGenerator(number) {
-	if (number === 1 && player.generators[1].amountPurchased.eq(0)) {
+	if (number === 1 && player.cashGenerators[1].amountPurchased.eq(0)) {
 		return new Decimal("1");
 	}
 	return new Decimal(number)
@@ -60,7 +60,7 @@ function getCostForGenerator(number) {
 		)
 		.mul(new Decimal(4).pow(number))
 		.pow(
-			player.generators[number]?.amountPurchased.add("1") ??
+			player.cashGenerators[number]?.amountPurchased.add("1") ??
 				new Decimal("1")
 		);
 }

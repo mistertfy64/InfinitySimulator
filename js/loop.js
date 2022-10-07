@@ -4,31 +4,31 @@ setInterval(() => {
 	let deltaTimeInMilliseconds = currentTime - player.lastUpdateTime;
 	player.lastUpdateTime = currentTime;
 
-	for (let i = 1; i <= player.generators.length - 1; i++) {
-		player.generators[i].multiplier = player.generators[
+	for (let i = 1; i <= player.cashGenerators.length - 1; i++) {
+		player.cashGenerators[i].multiplier = player.cashGenerators[
 			i
 		].amountPurchased.eq(0)
 			? new Decimal("1")
 			: new Decimal("1.1").pow(
-					player.generators[i].amountPurchased.sub(1)
+					player.cashGenerators[i].amountPurchased.sub(1)
 			  );
 	}
 
-	for (let i = 1; i <= player.generators.length - 1; i++) {
+	for (let i = 1; i <= player.cashGenerators.length - 1; i++) {
 		if (i === 1) {
 			player.cash = player.cash.add(
-				player.generators[1].amountOwned
+				player.cashGenerators[1].amountOwned
 					.mul(deltaTimeInMilliseconds / 1000)
-					.mul(player.generators[1].multiplier)
+					.mul(player.cashGenerators[1].multiplier)
 					.mul(player.cashUpgrades[`cu1`].currentEffect) // cu1 effect
 			);
 		} else {
-			player.generators[i - 1].amountOwned = player.generators[
+			player.cashGenerators[i - 1].amountOwned = player.cashGenerators[
 				i - 1
 			].amountOwned.add(
-				player.generators[i].amountOwned
+				player.cashGenerators[i].amountOwned
 					.mul(deltaTimeInMilliseconds / 1000)
-					.mul(player.generators[1].multiplier)
+					.mul(player.cashGenerators[1].multiplier)
 			);
 		}
 	}
@@ -41,16 +41,16 @@ setInterval(() => {
 	// update html
 	$("#cash-count").text(formatNumber(player.cash));
 
-	for (let i = 1; i <= player.generators.length - 1; i++) {
+	for (let i = 1; i <= player.cashGenerators.length - 1; i++) {
 		$(`#cash-generator-${i}-multiplier`).text(
 			formatNumber(
-				player.generators[i].multiplier.mul(
+				player.cashGenerators[i].multiplier.mul(
 					player.cashUpgrades[`cu1`].currentEffect
 				)
 			) // cu1 effect
 		);
 		$(`#cash-generator-${i}-owned-count`).text(
-			formatNumber(player.generators[i].amountOwned)
+			formatNumber(player.cashGenerators[i].amountOwned)
 		);
 		$(`#cash-generator-${i}-cost`).text(
 			formatNumber(getCostForGenerator(i))
